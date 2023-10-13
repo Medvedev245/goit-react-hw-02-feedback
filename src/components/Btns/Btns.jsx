@@ -1,9 +1,16 @@
-export const Btns = items => {
+export const Btns = ({ items, getButtonName }) => {
+  const btnNames = Object.keys(items);
   return (
     <div>
-      <button onClick={items.pressGood}>Good</button>
-      <button onClick={items.pressNeutral}>Neutral</button>
-      <button onClick={items.pressBad}>Bad</button>
+      {btnNames.map(name => (
+        <button
+          key={name}
+          name={name}
+          onClick={e => getButtonName(e.target.name)}
+        >
+          {name}
+        </button>
+      ))}
     </div>
   );
 };

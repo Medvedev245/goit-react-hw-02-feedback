@@ -9,16 +9,8 @@ export class App extends Component {
     bad: 0,
   };
 
-  pressGood = () => {
-    this.updateFeedback('good');
-  };
-
-  pressNeutral = () => {
-    this.updateFeedback('neutral');
-  };
-
-  pressBad = () => {
-    this.updateFeedback('bad');
+  getButtonName = button => {
+    this.updateFeedback(button);
   };
 
   updateFeedback = type => {
@@ -41,12 +33,7 @@ export class App extends Component {
     return (
       <div>
         <p>Please leave feedback</p>
-        <Btns
-          items={this.state}
-          pressGood={this.pressGood}
-          pressNeutral={this.pressNeutral}
-          pressBad={this.pressBad}
-        />
+        <Btns items={this.state} getButtonName={this.getButtonName} />
         <p>Statistics</p>
         <Feedback
           items={this.state}
