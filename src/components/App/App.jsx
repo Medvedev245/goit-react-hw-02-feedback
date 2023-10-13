@@ -1,6 +1,5 @@
 import { Component } from 'react';
-import { Btns } from '../Btns/Btns';
-import { Feedback } from '../Feedback/Feedback';
+import { Section } from './Sections/Section';
 
 export class App extends Component {
   state = {
@@ -9,38 +8,38 @@ export class App extends Component {
     bad: 0,
   };
 
-  getButtonName = button => {
-    this.updateFeedback(button);
-  };
-
-  updateFeedback = type => {
+  getButtonName = option => {
     this.setState(prevState => {
       return {
-        [type]: prevState[type] + 1,
+        [option]: prevState[option] + 1,
       };
     });
   };
 
-  addTotal = () => {
-    return this.state.good + this.state.neutral + this.state.bad;
+  counntTotal = () => {
+    const total = Object.values(this.state).reduce((prev, number) => {
+      return prev + number;
+    }, 0);
+    return total;
   };
-
   calcPositiveFeedback = () => {
-    return Math.round((this.state.good / this.addTotal()) * 100);
+    const { good } = this.state;
+    const total = this.counntTotal();
+    return Math.round((good / total) * 100);
   };
 
   render() {
+    const options = Object.keys(this.state);
+
     return (
-      <div>
-        <p>Please leave feedback</p>
-        <Btns items={this.state} getButtonName={this.getButtonName} />
-        <p>Statistics</p>
-        <Feedback
-          items={this.state}
-          addTotal={this.addTotal}
-          calcPositiveFeedback={this.calcPositiveFeedback}
-        />
-      </div>
+      <Section
+        title={'Please leave feedback'}
+        options={options}
+        getButtonName={this.getButtonName}
+        items={this.state}
+        counntTotal={this.counntTotal}
+        calcPositiveFeedback={this.calcPositiveFeedback}
+      />
     );
   }
 }

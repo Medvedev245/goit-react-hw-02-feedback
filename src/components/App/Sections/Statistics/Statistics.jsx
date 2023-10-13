@@ -1,22 +1,27 @@
 import PropTypes from 'prop-types';
 
-export const Feedback = ({ addTotal, calcPositiveFeedback, items: { good, neutral, bad } }) => {
-  let isStatisticsGiven = addTotal();
+export const Statistics = ({
+  title,
+  counntTotal,
+  calcPositiveFeedback,
+  items: { good, neutral, bad },
+}) => {
+  let isStatisticsGiven = counntTotal();
   return isStatisticsGiven ? (
     <div>
       <p>Good: {good}</p>
       <p>Neutral: {neutral}</p>
       <p>Bad: {bad}</p>
-      <p>Total: {addTotal()}</p>
+      <p>Total: {counntTotal()}</p>
       <p>Positive feedback: {calcPositiveFeedback()} %</p>
     </div>
   ) : (
-    <p>There is no feedback</p>
+    <p>{title}</p>
   );
 };
 
-Feedback.propTypes = {
-  addTotal: PropTypes.func.isRequired,
+Statistics.propTypes = {
+  counntTotal: PropTypes.func.isRequired,
   calcPositiveFeedback: PropTypes.func.isRequired,
   items: PropTypes.exact({
     good: PropTypes.number.isRequired,

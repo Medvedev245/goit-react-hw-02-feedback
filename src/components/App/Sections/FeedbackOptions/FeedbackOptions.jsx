@@ -1,8 +1,7 @@
-export const Btns = ({ items, getButtonName }) => {
-  const btnNames = Object.keys(items);
+export const FeedbackOptions = ({ options, getButtonName }) => {
   return (
     <div>
-      {btnNames.map(name => (
+      {options.map(name => (
         <button
           key={name}
           name={name}
