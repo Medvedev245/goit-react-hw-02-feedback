@@ -35,25 +35,25 @@ export class App extends Component {
     let isStatisticsGiven = this.counntTotal();
     console.log(isStatisticsGiven);
     return (
-      <Section
-        title={'Please leave feedback'}
-        options={options}
-        getButtonName={this.getButtonName}
-        items={this.state}
-        counntTotal={this.counntTotal}
-        calcPositiveFeedback={this.calcPositiveFeedback}
-      >
-        <FeedbackOptions options={options} getButtonName={this.getButtonName} />
-        {isStatisticsGiven ? (
-          <Statistics
-            items={this.items}
-            counntTotal={this.counntTotal}
-            calcPositiveFeedback={this.calcPositiveFeedback}
+      <>
+        <Section title="Please leave feedback">
+          <FeedbackOptions
+            options={options}
+            getButtonName={this.getButtonName}
           />
-        ) : (
-          <Notification message="There is no feedback" />
-        )}
-      </Section>
+        </Section>
+        <Section title="Statistics">
+          {isStatisticsGiven === 0 ? (
+            <Notification message="There is no feedback" />
+          ) : (
+            <Statistics
+              items={this.state}
+              counntTotal={this.counntTotal}
+              calcPositiveFeedback={this.calcPositiveFeedback}
+            />
+          )}
+        </Section>
+      </>
     );
   }
 }

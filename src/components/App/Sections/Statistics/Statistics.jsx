@@ -5,13 +5,14 @@ export const Statistics = ({
   calcPositiveFeedback,
   items: { good, neutral, bad },
 }) => {
+  console.log(good, neutral, bad);
   return (
     <div>
-      <p>Good: {good}</p>
-      <p>Neutral: {neutral}</p>
-      <p>Bad: {bad}</p>
-      <p>Total: {counntTotal()}</p>
-      <p>Positive feedback: {calcPositiveFeedback()} %</p>
+      <h3>Good: {good}</h3>
+      <h3>Neutral: {neutral}</h3>
+      <h3>Bad: {bad}</h3>
+      <h3>Total: {counntTotal()}</h3>
+      <h3>Positive feedback: {calcPositiveFeedback()}%</h3>
     </div>
   );
 };
