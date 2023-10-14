@@ -1,13 +1,11 @@
 import PropTypes from 'prop-types';
 
 export const Statistics = ({
-  title,
   counntTotal,
   calcPositiveFeedback,
   items: { good, neutral, bad },
 }) => {
-  let isStatisticsGiven = counntTotal();
-  return isStatisticsGiven ? (
+  return (
     <div>
       <p>Good: {good}</p>
       <p>Neutral: {neutral}</p>
@@ -15,8 +13,6 @@ export const Statistics = ({
       <p>Total: {counntTotal()}</p>
       <p>Positive feedback: {calcPositiveFeedback()} %</p>
     </div>
-  ) : (
-    <p>{title}</p>
   );
 };
 

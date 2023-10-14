@@ -1,5 +1,8 @@
 import { Component } from 'react';
 import { Section } from './Sections/Section';
+import { FeedbackOptions } from './Sections/FeedbackOptions/FeedbackOptions';
+import { Notification } from './Sections/Notification/Notification';
+import { Statistics } from './Sections/Statistics/Statistics';
 
 export class App extends Component {
   state = {
@@ -17,10 +20,9 @@ export class App extends Component {
   };
 
   counntTotal = () => {
-    const total = Object.values(this.state).reduce((prev, number) => {
+    return Object.values(this.state).reduce((prev, number) => {
       return prev + number;
     }, 0);
-    return total;
   };
   calcPositiveFeedback = () => {
     const { good } = this.state;
@@ -30,7 +32,8 @@ export class App extends Component {
 
   render() {
     const options = Object.keys(this.state);
-
+    let isStatisticsGiven = this.counntTotal();
+    console.log(isStatisticsGiven);
     return (
       <Section
         title={'Please leave feedback'}
@@ -39,7 +42,18 @@ export class App extends Component {
         items={this.state}
         counntTotal={this.counntTotal}
         calcPositiveFeedback={this.calcPositiveFeedback}
-      />
+      >
+        <FeedbackOptions options={options} getButtonName={this.getButtonName} />
+        {isStatisticsGiven ? (
+          <Statistics
+            items={this.items}
+            counntTotal={this.counntTotal}
+            calcPositiveFeedback={this.calcPositiveFeedback}
+          />
+        ) : (
+          <Notification message="There is no feedback" />
+        )}
+      </Section>
     );
   }
 }

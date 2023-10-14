@@ -1,6 +1,7 @@
-export const FeedbackOptions = ({ options, getButtonName }) => {
+export const FeedbackOptions = ({ title, options, getButtonName }) => {
   return (
     <div>
+      <p>{title}</p>
       {options.map(name => (
         <button
           key={name}

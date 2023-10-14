@@ -11,8 +11,11 @@ export const Section = ({
 }) => {
   return (
     <div>
-      <p>{title}</p>
-      <FeedbackOptions options={options} getButtonName={getButtonName} />
+      <FeedbackOptions
+        title={title}
+        options={options}
+        getButtonName={getButtonName}
+      />
       <p>Statistics</p>
       <Statistics
         items={items}
